@@ -3,3 +3,5 @@
 megaphone
 phonebook
 account
+*.swp
+*.swo
