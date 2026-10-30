@@ -63,3 +63,28 @@ Lo stesso vale in return (*this);: la funzione deve restituire un Fixed & (un og
 
 Regola da ricordare: this = indirizzo, *this = l’oggetto che c’è a quell’indirizzo. Come con un int *p, dove p è l’indirizzo e *p il numero.
 */
+
+/*
+Quante volte devo scrivere &operator=() ? Perché non basta il semplice a = b del C?
+
+lo scrivi una volta sola per classe, poi a = b; funziona ovunque.
+
+Perché esiste, se in C basta a = b? In C la copia di una struct copia i byte uno a uno, e finché dentro ci sono solo numeri va benissimo. Il problema nasce quando l’oggetto contiene un puntatore a memoria sul heap. Esempio:
+
+class Brain { char *_ideas; ... };   // _ideas punta a memoria presa con new
+Brain a;
+Brain b;
+b = a;     // copia dei byte: ora b._ideas e a._ideas puntano alla STESSA memoria
+
+Quando a e b muoiono, entrambi fanno delete sulla stessa memoria: crash. Succede uguale in C con una struct che ha un char *. In C++ puoi risolverlo scrivendo tu operator=: invece di copiare il puntatore, allochi nuova memoria e copi il contenuto (la cosiddetta copia profonda). In CPP04 lo farai davvero.
+
+Quindi, per essere chiari:
+
+- Copia superficiale (shallow copy)
+- Copia profonda (deep copy)
+
+Superficiale: copi i valori così come sono, quindi se dentro c’è un puntatore copi solo l’indirizzo. I due oggetti condividono la stessa memoria. È quello che fa la copia automatica del C e del C++.
+Profonda: copi anche quello a cui il puntatore punta. Alloci una nuova memoria e ci copi dentro il contenuto, così ogni oggetto ha la sua.
+
+E per Fixed? Dentro c’è solo un int, quindi la copia automatica basterebbe e non avresti bisogno di scriverla. Il subject te la fa scrivere adesso per farti vedere il meccanismo (per questo stampa i messaggi) e per abituarti alla forma canonica, che userai in tutti i moduli dopo.
+*/
