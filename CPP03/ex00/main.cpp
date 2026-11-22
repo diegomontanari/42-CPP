@@ -30,7 +30,7 @@ int	main(void)
 	bolt.takeDamage(1);
 
 	title("6. Energia finita: 10 azioni, poi l'undicesima non fa niente");
-	ClapTrap	tired("Baymax");
+	ClapTrap	tired("Marvin");
 	for (int i = 0; i < 10; i++)
 		tired.attack("Skynet");
 	tired.attack("Skynet");
@@ -39,7 +39,7 @@ int	main(void)
 	title("7. Copia e assegnazione");
 	// source: robot di partenza. copy nasce da source (costruttore di copia).
 	// target esiste gia' e viene sovrascritto con i valori di source (operator=).
-	ClapTrap	source("BB-8");
+	ClapTrap	source("Baymax");
 	source.attack("R2-D2");
 	source.takeDamage(3);
 	std::cout << "-> copy nasce da source:" << std::endl;
