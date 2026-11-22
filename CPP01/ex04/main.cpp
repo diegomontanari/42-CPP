@@ -1,4 +1,4 @@
-#include <fstream>	// std::ifstream, std::ofstream: i file come stream
+#include <fstream>	// permette di lavorare con i file attraverso gli stream (
 #include <sstream>	// std::stringstream: per leggere tutto il file in una stringa
 #include <string>
 #include <iostream>
@@ -10,6 +10,7 @@ static std::string	replaceAll(const std::string &text, const std::string &s1, co
 {
 	std::string			result;
 	std::string::size_type	start = 0;
+	// std:string è una classe. Per questo, il suo oggetto text può chiamare i suoi metodi.
 	std::string::size_type	pos = text.find(s1, start);
 
 	while (pos != std::string::npos)
