@@ -10,24 +10,24 @@ int	main(void)
 {
 	title("1. Nascita (default e con nome)");
 	ClapTrap	nobody;
-	ClapTrap	diego("Diego");
+	ClapTrap	bolt("Bolt");
 
 	title("2. Attacco normale: l'energia scende di 1");
-	diego.attack("Target");
+	bolt.attack("Target");
 
 	title("3. Danno parziale, poi danno che supera la vita");
-	diego.takeDamage(4);
-	diego.takeDamage(1000);
+	bolt.takeDamage(4);
+	bolt.takeDamage(1000);
 
 	title("4. Riparazione di un robot vivo");
-	ClapTrap	sara("Sara");
-	sara.takeDamage(3);
-	sara.beRepaired(2);
+	ClapTrap	nova("Nova");
+	nova.takeDamage(3);
+	nova.beRepaired(2);
 
 	title("5. Robot a 0 vita: non puo' attaccare ne' ripararsi");
-	diego.attack("Target");
-	diego.beRepaired(5);
-	diego.takeDamage(1);
+	bolt.attack("Target");
+	bolt.beRepaired(5);
+	bolt.takeDamage(1);
 
 	title("6. Energia finita: 10 azioni, poi l'undicesima non fa niente");
 	ClapTrap	tired("Tired");
@@ -37,16 +37,23 @@ int	main(void)
 	tired.beRepaired(1);
 
 	title("7. Copia e assegnazione");
-	ClapTrap	original("Original");
-	original.attack("Someone");
-	original.takeDamage(3);
-	ClapTrap	copy(original);
-	ClapTrap	assigned("Assigned");
-	assigned = original;
-	original.takeDamage(2);
+	// source: robot di partenza. copy nasce da source (costruttore di copia).
+	// target esiste gia' e viene sovrascritto con i valori di source (operator=).
+	ClapTrap	source("Source");
+	source.attack("Someone");
+	source.takeDamage(3);
+	std::cout << "-> copy nasce da source:" << std::endl;
+	ClapTrap	copy(source);
+	ClapTrap	target("Target");
+	std::cout << "-> target = source (ora hanno lo stesso nome):" << std::endl;
+	target = source;
+	std::cout << "-> source subisce 2 danni (la copia non deve cambiare):" << std::endl;
+	source.takeDamage(2);
+	std::cout << "-> copy si ripara di 1:" << std::endl;
 	copy.beRepaired(1);
-	ClapTrap	&same = assigned;
-	assigned = same;		// auto-assegnazione, passando da un riferimento
+	ClapTrap	&same = target;
+	std::cout << "-> auto-assegnazione:" << std::endl;
+	target = same;		// auto-assegnazione, passando da un riferimento
 
 	title("Fine: i distruttori partono in ordine inverso");
 	return (0);
