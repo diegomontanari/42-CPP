@@ -13,7 +13,7 @@ int	main(void)
 	ClapTrap	bolt("Bolt");
 
 	title("2. Attacco normale: l'energia scende di 1");
-	bolt.attack("Rusty");
+	bolt.attack("Wall");
 
 	title("3. Danno parziale, poi danno che supera la vita");
 	bolt.takeDamage(4);
@@ -25,12 +25,12 @@ int	main(void)
 	nova.beRepaired(2);
 
 	title("5. Robot a 0 vita: non puo' attaccare ne' ripararsi");
-	bolt.attack("Rusty");
+	bolt.attack("Wall");
 	bolt.beRepaired(5);
 	bolt.takeDamage(1);
 
 	title("6. Energia finita: 10 azioni, poi l'undicesima non fa niente");
-	ClapTrap	tired("Sleepy");
+	ClapTrap	tired("Tired");
 	for (int i = 0; i < 10; i++)
 		tired.attack("Wall");
 	tired.attack("Wall");
@@ -44,7 +44,7 @@ int	main(void)
 	source.takeDamage(3);
 	std::cout << "-> copy nasce da source:" << std::endl;
 	ClapTrap	copy(source);
-	ClapTrap	target("Rusty");
+	ClapTrap	target("Assigned");
 	std::cout << "-> target = source (ora hanno lo stesso nome):" << std::endl;
 	target = source;
 	std::cout << "-> source subisce 2 danni (la copia non deve cambiare):" << std::endl;
