@@ -45,7 +45,8 @@ int	main(void)
 	assigned = original;
 	original.takeDamage(2);
 	copy.beRepaired(1);
-	assigned = assigned;
+	ClapTrap	&same = assigned;
+	assigned = same;		// auto-assegnazione, passando da un riferimento
 
 	title("Fine: i distruttori partono in ordine inverso");
 	return (0);
