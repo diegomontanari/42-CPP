@@ -1,6 +1,8 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
@@ -46,5 +48,10 @@ int main()
 	c1.getBrain()->setIdea(0, "I want to sleep");
 	std::cout << "c1: " << c1.getBrain()->getIdea(0) << std::endl;
 	std::cout << "c2: " << c2.getBrain()->getIdea(0) << std::endl;
+
+	std::cout << std::endl << "===== Wrong test (non virtual) =====" << std::endl;
+	const WrongAnimal *wrong = new WrongCat();
+	wrong->makeSound(); // WrongAnimal sound: no polymorphism
+	delete wrong;
 	return (0);
 }
